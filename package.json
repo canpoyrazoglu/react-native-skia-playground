@@ -10,8 +10,14 @@
     "test": "jest"
   },
   "dependencies": {
-    "react": "19.0.0",
-    "react-native": "0.78.0"
+    "@react-navigation/native": "^7.0.15",
+    "@react-navigation/native-stack": "^7.2.1",
+    "@shopify/react-native-skia": "^1.11.11",
+    "babel-plugin-react-compiler": "^19.0.0-beta-40c6c23-20250301",
+    "react": "18.3.1",
+    "react-native": "0.77.1",
+    "react-native-safe-area-context": "^5.2.0",
+    "react-native-screens": "^4.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
@@ -20,17 +26,18 @@
     "@react-native-community/cli": "15.0.1",
     "@react-native-community/cli-platform-android": "15.0.1",
     "@react-native-community/cli-platform-ios": "15.0.1",
-    "@react-native/babel-preset": "0.78.0",
-    "@react-native/eslint-config": "0.78.0",
-    "@react-native/metro-config": "0.78.0",
-    "@react-native/typescript-config": "0.78.0",
+    "@react-native/babel-preset": "0.77.1",
+    "@react-native/eslint-config": "0.77.1",
+    "@react-native/metro-config": "0.77.1",
+    "@react-native/typescript-config": "0.77.1",
     "@types/jest": "^29.5.13",
-    "@types/react": "^19.0.0",
-    "@types/react-test-renderer": "^19.0.0",
+    "@types/react": "^18.2.6",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "@types/react-test-renderer": "^18.0.0",
     "eslint": "^8.19.0",
     "jest": "^29.6.3",
     "prettier": "2.8.8",
-    "react-test-renderer": "19.0.0",
+    "react-test-renderer": "18.3.1",
     "typescript": "5.0.4"
   },
   "engines": {
