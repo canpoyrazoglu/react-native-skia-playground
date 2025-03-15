@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, ScrollView, StyleSheet, View } from 'react-native';
+import { TIME_GRADIENT } from '../examples/timeGradient';
 import { useNavigate } from '../hooks/navigation';
 
 function HomeScreen() {
@@ -7,8 +8,10 @@ function HomeScreen() {
   return <View style={styles.container}>
         <ScrollView>
         <View>
-            <Button title="Shaders" onPress={() => {
-              navigate('Shader');
+            <Button title="Time Gradient" onPress={() => {
+              navigate('Shader', {
+                initialShader: TIME_GRADIENT,
+              });
             }} />
         </View>
       </ScrollView>
