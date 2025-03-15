@@ -4,4 +4,12 @@ module.exports = {
   rules: {
     'max-len': ['warn', { code: 80 }],
   },
+  overrides: [
+    {
+      files: ['examples/*.shader.ts'],
+      rules: {
+        'max-len': 'off',
+      },
+    },
+  ],
 };
