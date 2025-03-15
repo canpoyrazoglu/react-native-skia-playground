@@ -5,23 +5,26 @@ import { useNavigate } from '../hooks/navigation';
 
 function HomeScreen() {
   const navigate = useNavigate();
-  return <View style={styles.container}>
-        <ScrollView>
+  return (
+    <View style={styles.container}>
+      <ScrollView>
         <View>
-            <Button title="Time Gradient" onPress={() => {
+          <Button
+            title="Time Gradient"
+            onPress={() => {
               navigate('Shader', {
                 initialShader: TIME_GRADIENT,
               });
-            }} />
+            }}
+          />
         </View>
       </ScrollView>
-  </View>;
+    </View>
+  );
 }
 
-
 const styles = StyleSheet.create({
-  container:{
-  },
+  container: {},
 });
 
 export default HomeScreen;
