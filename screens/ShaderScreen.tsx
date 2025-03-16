@@ -9,6 +9,7 @@ import {
 } from '@shopify/react-native-skia';
 import React, { useMemo, useState } from 'react';
 import { LayoutChangeEvent, StyleSheet } from 'react-native';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
   useAnimatedKeyboard,
   useAnimatedStyle,
@@ -17,6 +18,9 @@ import Animated, {
 import ShaderInput from '../components/ShaderInput';
 import { RootStackParamList } from '../util/navigation/Navigation';
 
+type CanvasTap = [number, number, number, number];
+const NOT_TAPPED: CanvasTap = [0, 0, -1, -1];
+
 function ShaderScreen(
   props: NativeStackScreenProps<RootStackParamList, 'Shader'>,
 ) {
@@ -24,15 +28,13 @@ function ShaderScreen(
   const { height: keyboardHeight } = useAnimatedKeyboard();
   const [size, setSize] = useState([0, 0]);
   const time = useClock();
-  const [tapTime, setTapTime] = useState(-1);
-  const [tap, setTap] = useState([0, 0]);
+  const [taps, setTaps] = useState<CanvasTap[]>(Array(100).fill(NOT_TAPPED));
   const orientation = useDeviceOrientation();
   const uniforms = useDerivedValue(() => {
     return {
       size,
       time: time.value,
-      tapTime,
-      tap,
+      taps,
     };
   });
 
@@ -55,18 +57,27 @@ function ShaderScreen(
       paddingBottom: keyboardHeight.value,
     };
   });
+
+  const gesture = Gesture.Manual().onTouchesDown(e => {
+    console.log('e', e);
+  });
+
   return (
     <Animated.View style={[styles.container, containerStyle]}>
-      <Canvas
-        onLayout={onCanvasLayout}
-        style={[
-          styles.canvas,
-          orientation === 'landscape' ? styles.landscapeCanvas : undefined,
-        ]}>
-        <Fill>
-          {shaderSource && <Shader source={shaderSource} uniforms={uniforms} />}
-        </Fill>
-      </Canvas>
+      <GestureDetector gesture={gesture}>
+        <Canvas
+          onLayout={onCanvasLayout}
+          style={[
+            styles.canvas,
+            orientation === 'landscape' ? styles.landscapeCanvas : undefined,
+          ]}>
+          <Fill>
+            {shaderSource && (
+              <Shader source={shaderSource} uniforms={uniforms} />
+            )}
+          </Fill>
+        </Canvas>
+      </GestureDetector>
       {memoizedInput}
     </Animated.View>
   );
