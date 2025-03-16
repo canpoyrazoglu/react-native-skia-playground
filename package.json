@@ -17,6 +17,7 @@
     "babel-plugin-react-compiler": "^19.0.0-beta-40c6c23-20250301",
     "react": "18.3.1",
     "react-native": "0.77.1",
+    "react-native-gesture-handler": "^2.24.0",
     "react-native-reanimated": "^3.17.1",
     "react-native-safe-area-context": "^5.2.0",
     "react-native-screens": "^4.9.1",
