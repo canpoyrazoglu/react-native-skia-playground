@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, ScrollView, StyleSheet, View } from 'react-native';
+import { CHECKERBOARD } from '../examples/checkerboard';
 import { GRADIENT } from '../examples/gradient.shader';
 import { HELLO_WORLD } from '../examples/helloWorld.shader';
 import { TIME_GRADIENT } from '../examples/timeGradient.shader';
@@ -32,6 +33,14 @@ function HomeScreen() {
             onPress={() => {
               navigate('Shader', {
                 initialShader: TIME_GRADIENT,
+              });
+            }}
+          />
+          <Button
+            title="Checkerboard"
+            onPress={() => {
+              navigate('Shader', {
+                initialShader: CHECKERBOARD,
               });
             }}
           />
