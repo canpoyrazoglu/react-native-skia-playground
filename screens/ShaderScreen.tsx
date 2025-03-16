@@ -7,10 +7,11 @@ import {
   SkRuntimeEffect,
   useClock,
 } from '@shopify/react-native-skia';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useRef, useState } from 'react';
 import { LayoutChangeEvent, StyleSheet } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+  runOnJS,
   useAnimatedKeyboard,
   useAnimatedStyle,
   useDerivedValue,
@@ -20,6 +21,7 @@ import { RootStackParamList } from '../util/navigation/Navigation';
 
 type CanvasTap = [number, number, number, number];
 const NOT_TAPPED: CanvasTap = [0, 0, -1, -1];
+const MAX_TOUCHES = 20;
 
 function ShaderScreen(
   props: NativeStackScreenProps<RootStackParamList, 'Shader'>,
@@ -28,7 +30,10 @@ function ShaderScreen(
   const { height: keyboardHeight } = useAnimatedKeyboard();
   const [size, setSize] = useState([0, 0]);
   const time = useClock();
-  const [taps, setTaps] = useState<CanvasTap[]>(Array(100).fill(NOT_TAPPED));
+  const touchIdToStartTime = useRef<Record<number, number>>({});
+  const [taps, setTaps] = useState<CanvasTap[]>(
+    Array(MAX_TOUCHES).fill(NOT_TAPPED),
+  );
   const orientation = useDeviceOrientation();
   const uniforms = useDerivedValue(() => {
     return {
@@ -59,7 +64,13 @@ function ShaderScreen(
   });
 
   const gesture = Gesture.Manual().onTouchesDown(e => {
-    console.log('e', e);
+    const touches = e.allTouches.map(touch => {
+      return [touch.x, touch.y, Date.now(), Number.MAX_VALUE] as CanvasTap;
+    });
+    runOnJS(setTaps)([
+      ...touches,
+      ...Array(MAX_TOUCHES - touches.length).fill(NOT_TAPPED),
+    ]);
   });
 
   return (

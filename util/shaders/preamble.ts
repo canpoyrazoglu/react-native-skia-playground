@@ -4,7 +4,7 @@
 const preamble = `
   uniform float2 size;
   uniform float time;
-  uniform float4 taps[100];
+  uniform float4 taps[20];
 `;
 
 export default preamble;
