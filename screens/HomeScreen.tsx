@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, ScrollView, StyleSheet, View } from 'react-native';
-import { CHECKERBOARD } from '../examples/checkerboard';
+import { CHECKERBOARD } from '../examples/checkerboard.shader';
 import { GRADIENT } from '../examples/gradient.shader';
 import { HELLO_WORLD } from '../examples/helloWorld.shader';
 import { TIME_GRADIENT } from '../examples/timeGradient.shader';
