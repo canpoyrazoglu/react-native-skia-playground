@@ -3,6 +3,7 @@ import { Button, ScrollView, StyleSheet, View } from 'react-native';
 import { CHECKERBOARD } from '../examples/checkerboard.shader';
 import { GRADIENT } from '../examples/gradient.shader';
 import { HELLO_WORLD } from '../examples/helloWorld.shader';
+import { TAP } from '../examples/tap.shader';
 import { TIME_GRADIENT } from '../examples/timeGradient.shader';
 import { useNavigate } from '../hooks/navigation';
 
@@ -41,6 +42,14 @@ function HomeScreen() {
             onPress={() => {
               navigate('Shader', {
                 initialShader: CHECKERBOARD,
+              });
+            }}
+          />
+          <Button
+            title="Tap"
+            onPress={() => {
+              navigate('Shader', {
+                initialShader: TAP,
               });
             }}
           />
