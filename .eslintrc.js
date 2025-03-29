@@ -6,7 +6,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['examples/*.shader.ts'],
+      files: ['examples/*.shader.ts', 'util/shaders/preamble.ts'],
       rules: {
         'max-len': 'off',
       },
