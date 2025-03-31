@@ -3,6 +3,8 @@ import { Button, ScrollView, StyleSheet, View } from 'react-native';
 import { CHECKERBOARD } from '../examples/checkerboard.shader';
 import { GRADIENT } from '../examples/gradient.shader';
 import { HELLO_WORLD } from '../examples/helloWorld.shader';
+import { HUE_SWEEP } from '../examples/hueSweep.shader';
+import { RAINBOW_GLITCH } from '../examples/rainbowGlitch.shader';
 import { TAP } from '../examples/tap.shader';
 import { TIME_GRADIENT } from '../examples/timeGradient.shader';
 import { useNavigate } from '../hooks/navigation';
@@ -50,6 +52,22 @@ function HomeScreen() {
             onPress={() => {
               navigate('Shader', {
                 initialShader: TAP,
+              });
+            }}
+          />
+           <Button
+            title="Hue Sweep"
+            onPress={() => {
+              navigate('Shader', {
+                initialShader: HUE_SWEEP,
+              });
+            }}
+          />
+           <Button
+            title="Rainbow Glitch"
+            onPress={() => {
+              navigate('Shader', {
+                initialShader: RAINBOW_GLITCH,
               });
             }}
           />
