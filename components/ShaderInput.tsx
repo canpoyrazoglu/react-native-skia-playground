@@ -42,6 +42,7 @@ function ShaderInput(props: ShaderInputProps) {
       spellCheck={false}
       placeholderTextColor={'#888'}
       multiline
+      autoCapitalize="none"
       style={[styles.container, props.style, !isValid && styles.invalid]}
       onChangeText={setShader}
       placeholder="Paste (or type, if feeling masochistic) a Skia shader">
