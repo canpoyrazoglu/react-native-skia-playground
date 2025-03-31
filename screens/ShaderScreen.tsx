@@ -34,6 +34,7 @@ const TOUCH_START_TIME = 2;
 const TOUCH_END_TIME = 3;
 const NOT_TAPPED: CanvasTap = [0, 0, -1, -1];
 const MAX_TOUCHES = 20;
+const RANDOMS_COUNT = 100;
 
 function ShaderScreen(
   props: NativeStackScreenProps<RootStackParamList, 'Shader'>,
@@ -45,7 +46,13 @@ function ShaderScreen(
   const touchIdToTouchMap = useRef<Record<string, CanvasTap>>({});
   const [currentTouches, setCurrentTouches] = useState<CanvasTap[]>([]);
   const orientation = useDeviceOrientation();
-  
+  const [randoms] = useState(
+    Array(RANDOMS_COUNT)
+      .fill(0)
+      // prettier has a bug that formats the next line incorrectly,
+      // causing a compiler error.
+      // eslint-disable-next-line prettier/prettier
+      .map(() => Math.random()));
   const uniforms = useDerivedValue(() => {
     return {
       size,
@@ -55,6 +62,7 @@ function ShaderScreen(
         ...Array(MAX_TOUCHES - currentTouches.length).fill(NOT_TAPPED),
       ],
       touchCount: currentTouches.length,
+      randoms,
     };
   });
 
