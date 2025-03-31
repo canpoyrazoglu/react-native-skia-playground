@@ -11,6 +11,7 @@ const preamble = `
   uniform float2 size;
   uniform float time;
   uniform float4 touches[20];
+  uniform float randoms[100];
   uniform int touchCount;
 
   bool isTouchDown(vec4 touch){
