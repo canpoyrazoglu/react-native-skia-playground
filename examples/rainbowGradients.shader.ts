@@ -1,6 +1,10 @@
 export const RAINBOW_GRADIENTS = `
 
-float glitchRed(vec2 pos){
+/** gradient effects: create 3 random points and generate time-oscillated
+ *  multiplications to distances to all, all modulated with a sine wave.
+ */
+
+float gradientRed(vec2 pos){
   vec2 p = pos / size;
   vec2 pt1 = vec2(randoms[0], randoms[1]);
   vec2 pt2 = vec2(randoms[2], randoms[3]);
@@ -14,7 +18,7 @@ float glitchRed(vec2 pos){
   return sin(d1 * d2 * d3 * 3 + temporalOscillation1 * temporalOscillation2);
 }
 
-float glitchGreen(vec2 pos){
+float gradientGreen(vec2 pos){
   vec2 p = pos / size;
   vec2 pt1 = vec2(randoms[20], randoms[21]);
   vec2 pt2 = vec2(randoms[22], randoms[23]);
@@ -28,7 +32,7 @@ float glitchGreen(vec2 pos){
   return sin(d1 * d2 * d3 * 3 + temporalOscillation1 * temporalOscillation2);
 }
 
-float glitchBlue(vec2 pos){
+float gradientBlue(vec2 pos){
   vec2 p = pos / size;
   vec2 pt1 = vec2(randoms[40], randoms[41]);
   vec2 pt2 = vec2(randoms[42], randoms[43]);
@@ -43,11 +47,8 @@ float glitchBlue(vec2 pos){
 }
 
 vec4 main(vec2 pos) {
-  // float temporalOscillation = sin(time / 100);
-  // float spatialXOscillation = sin(pos.x / 100);
-  float red = glitchRed(pos);
-  float green = glitchGreen(pos);
-  float blue = glitchBlue(pos);
-  // float red = temporalOscillation * spatialXOscillation;
+  float red = gradientRed(pos);
+  float green = gradientGreen(pos);
+  float blue = gradientBlue(pos);
   return vec4(red, green, blue, 1);
 }`;
