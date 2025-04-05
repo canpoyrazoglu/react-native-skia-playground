@@ -1,3 +1,4 @@
+import { ANIMATED_CHECKERBOARD } from './animatedCheckerboard.shader';
 import { CHECKERBOARD } from './checkerboard.shader';
 import { GRADIENT } from './gradient.shader';
 import { HELLO_WORLD } from './helloWorld.shader';
@@ -15,6 +16,8 @@ export const EXAMPLE_THUMBS = {
   hueSweep: require('../assets/images/examples/thumbs/hueSweep.jpg'),
   // eslint-disable-next-line max-len
   rainbowGradients: require('../assets/images/examples/thumbs/rainbowGradients.jpg'),
+  // eslint-disable-next-line max-len
+  animatedCheckerboard: require('../assets/images/examples/thumbs/animatedCheckerboard.jpg'),
 };
 
 export type ShaderExample = {
@@ -66,5 +69,11 @@ export default [
     shader: RAINBOW_GRADIENTS,
     thumb: 'rainbowGradients',
     description: 'Animate complex gradients over time.',
+  },
+  {
+    name: 'Animated Checkerboard',
+    shader: ANIMATED_CHECKERBOARD,
+    thumb: 'animatedCheckerboard',
+    description: 'Animate colors of checkerboard over time.',
   },
 ] as ShaderExample[];
