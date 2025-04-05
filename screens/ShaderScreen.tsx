@@ -69,12 +69,15 @@ function ShaderScreen(
   const memoizedInput = useMemo(
     () => (
       <ShaderInput
-        style={styles.input}
+        style={[
+          styles.input,
+          orientation === 'landscape' ? styles.landscapeInput : undefined,
+        ]}
         initialShader={props.route.params?.initialShader?.trim()}
         onShaderUpdated={setShaderSource}
       />
     ),
-    [props.route.params?.initialShader],
+    [orientation, props.route.params?.initialShader],
   );
 
   const onCanvasLayout = (e: LayoutChangeEvent) => {
@@ -136,7 +139,12 @@ function ShaderScreen(
     .onTouchesUp(touchesUpHandler);
 
   return (
-    <Animated.View style={[styles.container, containerStyle]}>
+    <Animated.View
+      style={[
+        styles.container,
+        containerStyle,
+        orientation === 'landscape' ? styles.landscapeContainer : undefined,
+      ]}>
       <GestureDetector gesture={gesture}>
         <Canvas
           onLayout={onCanvasLayout}
@@ -160,6 +168,10 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
   },
+  landscapeContainer: {
+    flexDirection: 'row',
+    alignItems: 'stretch',
+  },
   canvas: {
     backgroundColor: '#000',
     flex: 1,
@@ -169,7 +181,13 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
     maxHeight: 200,
   },
-  landscapeCanvas: {},
+  landscapeInput: {
+    maxHeight: undefined,
+    flex:2
+  },
+  landscapeCanvas: {
+    flex: 3
+  },
 });
 
 export default ShaderScreen;
