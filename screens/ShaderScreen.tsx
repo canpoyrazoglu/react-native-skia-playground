@@ -16,7 +16,9 @@ import {
 } from 'react-native-gesture-handler';
 import Animated, {
   runOnJS,
+  SensorType,
   useAnimatedKeyboard,
+  useAnimatedSensor,
   useAnimatedStyle,
   useDerivedValue,
 } from 'react-native-reanimated';
@@ -46,6 +48,11 @@ function ShaderScreen(
   const touchIdToTouchMap = useRef<Record<string, CanvasTap>>({});
   const [currentTouches, setCurrentTouches] = useState<CanvasTap[]>([]);
   const orientation = useDeviceOrientation();
+  const accelerometer = useAnimatedSensor(SensorType.ACCELEROMETER);
+  const gravity = useAnimatedSensor(SensorType.GRAVITY);
+  const gyroscope = useAnimatedSensor(SensorType.GYROSCOPE);
+  const rotation = useAnimatedSensor(SensorType.ROTATION);
+
   const [randoms] = useState(
     Array(RANDOMS_COUNT)
       .fill(0)
@@ -63,6 +70,26 @@ function ShaderScreen(
       ],
       touchCount: currentTouches.length,
       randoms,
+      accelerometer: [
+        accelerometer.sensor.value.x,
+        accelerometer.sensor.value.y,
+        accelerometer.sensor.value.z,
+      ],
+      gravity: [
+        gravity.sensor.value.x,
+        gravity.sensor.value.y,
+        gravity.sensor.value.z,
+      ],
+      gyroscope: [
+        gyroscope.sensor.value.x,
+        gyroscope.sensor.value.y,
+        gyroscope.sensor.value.z,
+      ],
+      rotation: [
+        rotation.sensor.value.roll,
+        rotation.sensor.value.pitch,
+        rotation.sensor.value.yaw,
+      ],
     };
   });
 
@@ -183,10 +210,10 @@ const styles = StyleSheet.create({
   },
   landscapeInput: {
     maxHeight: undefined,
-    flex:2
+    flex: 2,
   },
   landscapeCanvas: {
-    flex: 3
+    flex: 3,
   },
 });
 
