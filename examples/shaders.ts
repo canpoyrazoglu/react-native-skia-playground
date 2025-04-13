@@ -4,6 +4,7 @@ import { GRADIENT } from './gradient.shader';
 import { HELLO_WORLD } from './helloWorld.shader';
 import { HUE_SWEEP } from './hueSweep.shader';
 import { RAINBOW_GRADIENTS } from './rainbowGradients.shader';
+import { ROTATION } from './rotation';
 import { TAP } from './tap.shader';
 import { TIME_GRADIENT } from './timeGradient.shader';
 
@@ -18,6 +19,7 @@ export const EXAMPLE_THUMBS = {
   rainbowGradients: require('../assets/images/examples/thumbs/rainbowGradients.jpg'),
   // eslint-disable-next-line max-len
   animatedCheckerboard: require('../assets/images/examples/thumbs/animatedCheckerboard.jpg'),
+  rotation: require('../assets/images/examples/thumbs/rotation.jpg'),
 };
 
 export type ShaderExample = {
@@ -75,5 +77,11 @@ export default [
     shader: ANIMATED_CHECKERBOARD,
     thumb: 'animatedCheckerboard',
     description: 'Animate colors of checkerboard over time.',
+  },
+  {
+    name: 'Rotation',
+    shader: ROTATION,
+    thumb: 'rotation',
+    description: 'Display three strips from rotation yaw/pitch/roll data.',
   },
 ] as ShaderExample[];
